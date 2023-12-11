@@ -7,6 +7,46 @@ Estamos usando o ambiente ‘Lunar Lander’ da biblioteca gymnsasium da OpenAI.
 - Ação: Para cada estado do ambiente, o agente executa uma ação com base em seu estado atual. O agente pode escolher entre quatro ações distintas: do_nothing, fire_left_engine, fire_right_engine e fire_main_engine.
 - Recompensa: O agente recebe uma pequena recompensa negativa toda vez que age. Isso é feito na tentativa de ensinar o agente a pousar o foguete da maneira mais rápida e eficiente possível. Se o módulo cair ou parar, o episódio é considerado completo e receberá -100 ou +100 pontos adicionais, dependendo do resultado.
 
+## Algoritmo
+
+### Q-Learning
+
+O Q-Learning é um algoritmo de aprendizado por reforço que visa aprender a política ótima para a tomada de decisões sequenciais. Ele utiliza uma tabela chamada de tabela Q para armazenar os valores de utilidade para cada par de estado-ação. O objetivo é otimizar a função de valor Q, que mede a utilidade esperada de realizar uma ação em um determinado estado.
+
+### Deep Q-Learning
+
+O DQL estende o Q-Learning clássico incorporando uma rede neural profunda para aproximar a função Q. Em vez de depender de uma tabela Q, a rede neural recebe como entrada o estado atual e produz uma saída para cada possível ação. A atualização dos pesos da rede é realizada para minimizar a diferença entre a previsão da rede e a recompensa real obtida.
+
+### Passos Principais
+
+1. **Inicialização da Rede Neural:** Inicie uma rede neural profunda com pesos aleatórios. Esta rede é conhecida como a Rede Q.
+
+2. **Coleta de Dados:** Execute a política atual na environment e colete pares de transições (estado, ação, recompensa, próximo estado).
+
+3. **Cálculo da Função Q Alvo:** Calcule a função Q alvo usando a fórmula:
+   ```
+   Q_target(state, action) = reward + gamma * max(Q(next_state, all_actions))
+   ```
+   onde `gamma` é o fator de desconto.
+
+4. **Cálculo da Diferença Temporal (TD):** Compute a diferença temporal entre a previsão atual da rede e a função Q alvo.
+
+5. **Atualização dos Pesos:** Utilize um otimizador para minimizar a TD, ajustando os pesos da rede.
+
+6. **Iteração:** Repita os passos 2-5 por um número específico de episódios ou até a convergência.
+
+## Parâmetros Importantes
+
+- **Taxa de Aprendizado (learning_rate):** Define a magnitude dos ajustes dos pesos durante a atualização.
+  
+- **Fator de Desconto (gamma):** Controla a importância das recompensas futuras na tomada de decisão presente.
+
+- **Exploração vs. Exploração (epsilon-greedy):** Determina a probabilidade de escolher uma ação aleatória em vez da ação com melhor Q-value.
+
+## Analise do conceito
+
+O Deep Q-Learning é uma abordagem poderosa para resolver problemas de aprendizado por reforço em ambientes complexos. Ao incorporar redes neurais profundas, o DQL supera as limitações do Q-Learning tradicional, possibilitando a abordagem de tarefas desafiadoras e de grande escala.
+
 ## Análise da implementação do algorimo deep q-learning
 O modelo de final tem os seguintes hiperparâmetros:
 
