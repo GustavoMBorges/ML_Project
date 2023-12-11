@@ -1,5 +1,7 @@
 # Lunar Lander Project
 
+Gustavo Marques Borges
+
 ## Lunar Lander Environment
 Estamos usando o ambiente ‘Lunar Lander’ da biblioteca gymnsasium da OpenAI. Este ambiente lida com o problema de pousar um módulo de pouso em uma plataforma. As etapas para configurar esse ambiente são mencionadas na página GitHub da documentação biblioteca gymnasium  OpenAI e na documentação da OpenAI. A seguir estão as variáveis env em resumo para entender o ambiente em que estamos trabalhando.
 
